@@ -1,4 +1,4 @@
-package com.example.safeapp.data.model;
+package com.example.safeapp;
 
 
 import android.graphics.Color;
@@ -151,22 +151,33 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
     private void getRoute() {
 
-        Button getRouteBtn = (Button) findViewById(R.id.routeBtn);
-        getRouteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LatLng origin = new LatLng(33.428500, -111.949190);;
-                LatLng dest = new LatLng(33.3648, -111.9474);;
+//        Button getRouteBtn = (Button) findViewById(R.id.routeBtn);
+//        getRouteBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                LatLng origin = new LatLng(33.428500, -111.949190);;
+//                LatLng dest = new LatLng(33.3648, -111.9474);;
+//
+//                // Getting URL to the Google Directions API
+//                String url = getDirectionsUrl(origin, dest);
+//
+//                DownloadTask downloadTask = new DownloadTask();
+//
+//                // Start downloading json data from Google Directions API
+//                downloadTask.execute(url);
+//            }
+//        });
 
-                // Getting URL to the Google Directions API
-                String url = getDirectionsUrl(origin, dest);
+        LatLng origin = new LatLng(33.428500, -111.949190);;
+        LatLng dest = new LatLng(33.3648, -111.9474);;
 
-                DownloadTask downloadTask = new DownloadTask();
+        // Getting URL to the Google Directions API
+        String url = getDirectionsUrl(origin, dest);
 
-                // Start downloading json data from Google Directions API
-                downloadTask.execute(url);
-            }
-        });
+        DownloadTask downloadTask = new DownloadTask();
+
+        // Start downloading json data from Google Directions API
+        downloadTask.execute(url);
     }
 
     private class DownloadTask extends AsyncTask<String,Integer, String> {
@@ -187,10 +198,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-
             ParserTask parserTask = new ParserTask();
-
-
             parserTask.execute(result);
 
         }
@@ -210,7 +218,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 jObject = new JSONObject(jsonData[0]);
                 DirectionsJSONParser parser = new DirectionsJSONParser();
 
-                routes = parser.parse(jObject);
+//                routes = parser.parse(jObject);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -232,11 +240,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 for (int j = 0; j < path.size(); j++) {
                     HashMap point = path.get(j);
 
-                    double lat = Double.parseDouble(point.get("lat"));
-                    double lng = Double.parseDouble(point.get("lng"));
-                    LatLng position = new LatLng(lat, lng);
+//                    double lat = Double.parseDouble(point.get("lat"));
+//                    double lng = Double.parseDouble(point.get("lng"));
+//                    LatLng position = new LatLng(lat, lng);
 
-                    points.add(position);
+//                    points.add(position);
                 }
 
                 lineOptions.addAll(points);

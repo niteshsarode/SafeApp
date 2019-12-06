@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/source" />
 
     <Button
-        android:id="@+id/get_route"
+        android:id="@+id/get_route_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"

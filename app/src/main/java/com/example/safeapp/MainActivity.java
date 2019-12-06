@@ -1,16 +1,11 @@
-package com.example.safeapp.data.model;
+package com.example.safeapp;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.safeapp.R;
-
-
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +19,14 @@ public class MainActivity extends AppCompatActivity {
 
         EditText destination_text = (EditText)findViewById(R.id.destination);
         String destination_value = destination_text.getText().toString();
+
+        Button get_route = (Button) findViewById(R.id.get_route_btn);
+        get_route.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 }

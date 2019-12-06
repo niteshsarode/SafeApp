@@ -1,4 +1,4 @@
-package com.journaldev.maproutebetweenmarkers;
+package com.example.safeapp.data;
 
 import android.util.Log;
 
@@ -11,10 +11,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-/**
- * Created by anupamchugh on 27/11/15.
- */
 
 public class DirectionsJSONParser {
 
