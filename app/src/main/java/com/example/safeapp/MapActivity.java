@@ -49,7 +49,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     /**
      * Alternative radius for convolution
      */
-    private static final int ALT_HEATMAP_RADIUS = 10;
+    private static final int ALT_HEATMAP_RADIUS = 200;
 
     /**
      * Alternative opacity of heatmap overlay
@@ -108,6 +108,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 .build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         addHeatMap();
+        getRoute();
     }
 
     private void addHeatMap() {
@@ -123,7 +124,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         try {
             list = readItems(R.raw.crime);
-            System.out.println("LISTTTT" + list);
+            System.out.println("LIST" + list);
         } catch (JSONException e) {
             Toast.makeText(this, "Problem reading list of locations.", Toast.LENGTH_LONG).show();
         }
@@ -151,23 +152,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
     private void getRoute() {
 
-//        Button getRouteBtn = (Button) findViewById(R.id.routeBtn);
-//        getRouteBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                LatLng origin = new LatLng(33.428500, -111.949190);;
-//                LatLng dest = new LatLng(33.3648, -111.9474);;
-//
-//                // Getting URL to the Google Directions API
-//                String url = getDirectionsUrl(origin, dest);
-//
-//                DownloadTask downloadTask = new DownloadTask();
-//
-//                // Start downloading json data from Google Directions API
-//                downloadTask.execute(url);
-//            }
-//        });
-
         LatLng origin = new LatLng(33.428500, -111.949190);;
         LatLng dest = new LatLng(33.3648, -111.9474);;
 
@@ -178,6 +162,35 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         // Start downloading json data from Google Directions API
         downloadTask.execute(url);
+
+        /* Draw route on MAP*/
+
+//        ArrayList points = null;
+//        PolylineOptions lineOptions = null;
+//        MarkerOptions markerOptions = new MarkerOptions();
+//
+//        for (int i = 0; i < result.size(); i++) {
+//            points = new ArrayList();
+//            lineOptions = new PolylineOptions();
+//
+//            List<HashMap> path = result.get(i);
+//
+//            for (int j = 0; j < path.size(); j++) {
+//                HashMap point = path.get(j);
+//
+//                double lat = Double.parseDouble(point.get("lat").toString());
+//                double lng = Double.parseDouble(point.get("lng").toString());
+//                LatLng position = new LatLng(lat, lng);
+//
+//                points.add(position);
+//            }
+//
+//            lineOptions.addAll(points);
+//            lineOptions.width(12);
+//            lineOptions.color(Color.RED);
+//            lineOptions.geodesic(true);
+//
+//        }
     }
 
     private class DownloadTask extends AsyncTask<String,Integer, String> {
@@ -217,7 +230,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             try {
                 jObject = new JSONObject(jsonData[0]);
                 DirectionsJSONParser parser = new DirectionsJSONParser();
-
 //                routes = parser.parse(jObject);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -240,11 +252,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 for (int j = 0; j < path.size(); j++) {
                     HashMap point = path.get(j);
 
-//                    double lat = Double.parseDouble(point.get("lat"));
-//                    double lng = Double.parseDouble(point.get("lng"));
-//                    LatLng position = new LatLng(lat, lng);
+                    double lat = Double.parseDouble(point.get("lat").toString());
+                    double lng = Double.parseDouble(point.get("lng").toString());
+                    LatLng position = new LatLng(lat, lng);
 
-//                    points.add(position);
+                    points.add(position);
                 }
 
                 lineOptions.addAll(points);
