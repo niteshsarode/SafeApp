@@ -86,9 +86,18 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        Button favBtn = (Button) findViewById(R.id.add_fav_btn);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        favBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //add fav endpoint
+            }
+        });
 
     }
 
@@ -97,7 +106,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney, Australia, and move the camera.
         LatLng marq = new LatLng(33.428500, -111.949190);
         mMap.addMarker(new MarkerOptions().position(marq).title("Marker in MarQ"));
         CameraPosition cameraPosition = new CameraPosition.Builder()
@@ -266,7 +274,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
             }
 
-// Drawing polyline in the Google Map for the i-th route
+            // Drawing polyline in the Google Map for the i-th route
             mMap.addPolyline(lineOptions);
         }
     }
