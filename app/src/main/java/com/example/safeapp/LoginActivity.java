@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                String url = "http://10.218.110.74:5000/users/login?user="+usernameEditText.getText().toString()+"&pwd="+passwordEditText.getText().toString();
+                String url = "http://35.232.208.226/users/login?user="+usernameEditText.getText().toString()+"&pwd="+passwordEditText.getText().toString();
                 try {
                     String response = new LoginUrl().execute(url).get();
                     if (response == "login_success") {
@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                String url = "http://10.218.110.74:5000/users/register?user="+usernameEditText.getText().toString()+"&pwd="+passwordEditText.getText().toString();
+                String url = "http://35.232.208.226/users/register?user="+usernameEditText.getText().toString()+"&pwd="+passwordEditText.getText().toString();
                 try {
                     String response = new LoginUrl().execute(url).get();
                     if (response == "register_success") {
@@ -72,8 +72,4 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
-    private void showLoginFailed(@StringRes Integer errorString) {
-        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
-    }
 }

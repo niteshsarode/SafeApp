@@ -26,6 +26,7 @@ public class RouteUrl extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+
     }
 
     private String downloadUrl(String strUrl) throws IOException {
@@ -35,14 +36,9 @@ public class RouteUrl extends AsyncTask<String, String, String> {
         try {
             URL url = new URL(strUrl);
             urlConnection = (HttpURLConnection) url.openConnection();
+            System.out.println("BBBCONNECTED!!");
             urlConnection.connect();
-//            if (urlConnection.getResponseCode() == 201){
-//                data = "register_success";
-//            } else if(urlConnection.getResponseCode() == 200){
-//                data = "login_success";
-//            } else {
-//                data = "failed";
-//            }
+            System.out.println("CONNECTED!!");
             iStream = urlConnection.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
             StringBuffer sb = new StringBuffer();
